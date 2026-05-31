@@ -1,7 +1,5 @@
 package KAGO_framework.model.abitur.datenstrukturen;
 
-import KAGO_framework.model.abitur.datenstrukturen.Edge;
-
 /**
  * <p>
  * Materialien zu den zentralen NRW-Abiturpruefungen im Fach Informatik ab 2018
