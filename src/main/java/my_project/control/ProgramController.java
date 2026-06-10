@@ -13,6 +13,8 @@ public class ProgramController extends InteractiveGraphicalObject {
     private Road[] roads;
 
     private Background background;
+    private StartScreen startScreen;
+    private Scene scene;
 
     public ProgramController(ViewController viewController){
         this.viewController = viewController;
@@ -20,10 +22,22 @@ public class ProgramController extends InteractiveGraphicalObject {
 
     public void startProgram() {
 
+        scene = new Scene();
+        viewController.draw(scene);
 
         background = new Background();
         viewController.draw(background);
 
+        if (scene.getScene() == 1){
+            startScreen = new StartScreen();
+            viewController.draw(startScreen);
+        }
+        if (scene.getScene() == 2){
+
+        }
+        if (scene.getScene() == 3){
+
+        }
         // Speicherplatz für 100 Road-Objekte
         roads = new Road[100];
 
