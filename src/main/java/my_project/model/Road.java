@@ -9,10 +9,10 @@ import java.util.Random;
 public class Road extends Graph {
 
     // Anzahl der Knoten im Graphen
-    private static final int ANZAHL_KNOTEN = 20;
+    private static  int ANZAHL_KNOTEN = 20;
 
     // Jeder Knoten darf maximal 3 Verbindungen haben
-    private static final int MAX_KANTEN_PRO_KNOTEN = 3;
+    private static  int MAX_KANTEN_PRO_KNOTEN = 3;
 
     // Array für alle Knoten
     private Vertex[] knoten;
@@ -364,4 +364,11 @@ public class Road extends Graph {
         // Gibt zurück, ob das Spiel gewonnen wurde
         return spielGewonnen;
     }
+
+    public int getAnzahlKnoten() {
+        return ANZAHL_KNOTEN;
+    }
+
+    ;
+
 }
