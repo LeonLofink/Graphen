@@ -24,4 +24,3 @@ public class Scene extends InteractiveGraphicalObject {
         this.scene = scene;
     }
 }
-//

@@ -25,18 +25,20 @@ public class ProgramController extends InteractiveGraphicalObject {
         scene = new Scene();
         viewController.draw(scene);
 
+
         background = new Background();
         viewController.draw(background);
 
         if (scene.getScene() == 1){
             startScreen = new StartScreen();
             viewController.draw(startScreen);
+            viewController.register(startScreen);
         }
         if (scene.getScene() == 2){
-
+            viewController.removeDrawable(startScreen);
         }
         if (scene.getScene() == 3){
-
+            viewController.removeDrawable(startScreen);
         }
         // Speicherplatz für 100 Road-Objekte
         roads = new Road[100];

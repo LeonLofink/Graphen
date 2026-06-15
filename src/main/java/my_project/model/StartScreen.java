@@ -10,6 +10,7 @@ public class StartScreen extends InteractiveGraphicalObject {
     private Scene scene;
 
     public StartScreen() {
+
     }
 
     @Override
@@ -18,17 +19,17 @@ public class StartScreen extends InteractiveGraphicalObject {
         // Titel
         drawTool.setCurrentColor(Color.WHITE);
         drawTool.formatText("Arial", Font.BOLD, 50);
-        drawTool.drawText(825, 250, "NAME");
+        drawTool.drawText(800, 250, "GRAPH RUNNER");
 
         // Start Button
-        drawTool.drawRectangle(700, 350, 400, 80);
+        drawTool.drawRectangle(800, 350, 400, 80);
         drawTool.formatText("Arial", Font.BOLD, 30);
-        drawTool.drawText(850, 400, "START");
+        drawTool.drawText(950, 400, "START");
 
         // BST Button
-        drawTool.drawRectangle(700, 500, 400, 80);
+        drawTool.drawRectangle(800, 500, 400, 80);
         drawTool.formatText("Arial", Font.BOLD, 30);
-        drawTool.drawText(730, 550, "BINARY SEARCH TREE");
+        drawTool.drawText(830, 550, "BINARY SEARCH TREE");
 
 
     }
@@ -39,9 +40,9 @@ public class StartScreen extends InteractiveGraphicalObject {
         int my = e.getY();
 
         // Start Button
-        if (mx >= 350 && mx <= 650 &&
-                my >= 250 && my <= 330) {
-
+        if (mx >= 800 && mx <= 1200 &&
+                my >= 350 && my <= 420) {
+            System.out.println("mousePressed");
             scene.setScene(2);
         }
 
