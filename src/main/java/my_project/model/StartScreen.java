@@ -9,8 +9,8 @@ import java.awt.event.MouseEvent;
 public class StartScreen extends InteractiveGraphicalObject {
     private Scene scene;
 
-    public StartScreen() {
-
+    public StartScreen(Scene scene) {
+        this.scene = scene;
     }
 
     @Override

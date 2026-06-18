@@ -23,4 +23,5 @@ public class Scene extends InteractiveGraphicalObject {
     public void setScene(int scene) {
         this.scene = scene;
     }
+
 }
