@@ -23,7 +23,7 @@ public class Background extends GraphicalObject {
         this.background = background;
         try {
             image = ImageIO.read(new File(
-                    "C:\\Users\\leonl\\IdeaProjects\\Graphen\\src\\main\\resources\\graphic\\Purple_Nebula_07-1024x1024.png"));
+                    "src\\main\\resources\\graphic\\Purple_Nebula_07-1024x1024.png"));
         } catch (IOException e) {
             e.printStackTrace();
         }
