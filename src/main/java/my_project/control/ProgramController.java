@@ -2,9 +2,11 @@ package my_project.control;
 
 import KAGO_framework.control.ViewController;
 import KAGO_framework.model.InteractiveGraphicalObject;
+import KAGO_framework.model.abitur.datenstrukturen.Vertex;
 import my_project.model.*;
 
 import java.awt.*;
+import java.awt.event.MouseEvent;
 
 public class ProgramController extends InteractiveGraphicalObject {
 
@@ -27,6 +29,8 @@ public class ProgramController extends InteractiveGraphicalObject {
     }
 
     public void startProgram() {
+
+        viewController.register(this);
 
         scene = new Scene();
         viewController.draw(scene);
@@ -74,10 +78,38 @@ public class ProgramController extends InteractiveGraphicalObject {
                 roadRenderer = new RoadRenderer(currentRoad,player);
                 viewController.draw(roadRenderer);
                 viewController.draw(player);
+                player.setRoad(currentRoad);
             }
 
             if(currentScene == 3){
                 viewController.removeDrawable(startScreen);
+            }
+        }
+    }
+
+    @Override
+    public void mouseClicked(MouseEvent e) {
+
+        double mx = e.getX();
+        double my = e.getY();
+
+        if (roadRenderer == null) return;
+
+        for (int i = 0; i < roadRenderer.getNeighborCount(); i++) {
+
+            double dx = roadRenderer.getNeighborX(i) - mx;
+            double dy = roadRenderer.getNeighborY(i) - my;
+
+            double dist = Math.sqrt(dx*dx + dy*dy);
+
+            if (dist < 20) {
+                int nodeIndex = roadRenderer.getNeighborIndex(i);
+                player.setTarget(
+                        roadRenderer.getNeighborX(i),
+                        roadRenderer.getNeighborY(i),
+                        roadRenderer.getNeighborIndex(i)
+                );
+                break;
             }
         }
     }

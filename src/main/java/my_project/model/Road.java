@@ -389,6 +389,38 @@ public class Road extends Graph {
         // Gibt zurück, ob das Spiel gewonnen wurde
         return spielGewonnen;
     }
+    public double getX(Vertex v) {
+        int i = getIndexVonKnoten(v);
+        return xPos[i];
+    }
+
+    public double getY(Vertex v) {
+        int i = getIndexVonKnoten(v);
+        return yPos[i];
+    }
+    public Vertex getNodeAtPosition(double x, double y) {
+
+        for (int i = 0; i < ANZAHL_KNOTEN; i++) {
+
+            double dx = xPos[i] - x;
+            double dy = yPos[i] - y;
+
+            double dist = Math.sqrt(dx * dx + dy * dy);
+
+            if (dist < 20) {
+                return knoten[i];
+            }
+        }
+
+        return null;
+    }
+    public double getX(int index) {
+        return xPos[index];
+    }
+
+    public double getY(int index) {
+        return yPos[index];
+    }
 
 }
 
