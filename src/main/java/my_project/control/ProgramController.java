@@ -17,6 +17,8 @@ public class ProgramController extends InteractiveGraphicalObject {
     private Road[] roads;
     private RoadRenderer roadRenderer;
 
+    private UpgradeTreeRenderer upgradeTreeRenderer;
+
     private Background background;
     private StartScreen startScreen;
     private Scene scene;
@@ -83,6 +85,14 @@ public class ProgramController extends InteractiveGraphicalObject {
 
             if(currentScene == 3){
                 viewController.removeDrawable(startScreen);
+                background.setBackground(1); // Keeps background dark or custom
+
+                if (upgradeTreeRenderer == null) {
+                    // Passes their working player object into your new renderer
+                    upgradeTreeRenderer = new UpgradeTreeRenderer(player);
+                    viewController.draw(upgradeTreeRenderer);
+                    viewController.register(upgradeTreeRenderer);
+                }
             }
         }
     }

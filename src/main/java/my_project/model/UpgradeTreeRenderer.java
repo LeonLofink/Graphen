@@ -11,12 +11,12 @@ import java.util.Random;
 public class UpgradeTreeRenderer extends InteractiveGraphicalObject {
 
     private BinarySearchTree<Upgrade> tree;
-    //private Player player;
+    private Player player;
     private Upgrade selectedUpgrade;
     private Random random;
 
-    public UpgradeTreeRenderer() {
-        //this.player = player;
+    public UpgradeTreeRenderer(Player player) {
+        this.player = player;
         this.tree = new BinarySearchTree<>();
         this.random = new Random();
         generateRandomUpgradeTree();
