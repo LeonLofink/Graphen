@@ -4,16 +4,15 @@ import KAGO_framework.model.abitur.datenstrukturen.Graph;
 import KAGO_framework.model.abitur.datenstrukturen.Vertex;
 import KAGO_framework.model.abitur.datenstrukturen.Edge;
 
-import java.awt.*;
 import java.util.Random;
 
 public class Road extends Graph {
 
     // Anzahl der Knoten im Graphen
-    private static final int ANZAHL_KNOTEN = 20;
+    private static  int ANZAHL_KNOTEN = 20;
 
     // Jeder Knoten darf maximal 3 Verbindungen haben
-    private static final int MAX_KANTEN_PRO_KNOTEN = 3;
+    private static  int MAX_KANTEN_PRO_KNOTEN = 3;
 
     // Array für alle Knoten
     private Vertex[] knoten;
@@ -45,14 +44,9 @@ public class Road extends Graph {
     // Zufallsgenerator
     private Random random;
 
-
-    private double[] xPos;
-    private double[] yPos;
-
     public Road() {
         super();
-        xPos = new double[ANZAHL_KNOTEN];
-        yPos = new double[ANZAHL_KNOTEN];
+
         // Zufallsgenerator erstellen
         random = new Random();
 
@@ -81,25 +75,6 @@ public class Road extends Graph {
 
         // Am Anfang ist das Spiel noch nicht gewonnen
         spielGewonnen = false;
-        xPos[0] = Toolkit.getDefaultToolkit().getScreenSize().width / 2;
-        yPos[0] = Toolkit.getDefaultToolkit().getScreenSize().height / 2;
-
-        generierePositionen();
-
-    }
-    private void generierePositionen() {
-
-        int width = Toolkit.getDefaultToolkit().getScreenSize().width;
-        int height = Toolkit.getDefaultToolkit().getScreenSize().height;
-
-        for (int i = 0; i < ANZAHL_KNOTEN; i++) {
-
-            double angle = 2 * Math.PI * i / ANZAHL_KNOTEN;
-            double radius = 300;
-
-            xPos[i] = width/2 + Math.cos(angle) * radius;
-            yPos[i] = height/2 + Math.sin(angle) * radius;
-        }
     }
 
     private void erstelleKnoten() {
@@ -309,7 +284,7 @@ public class Road extends Graph {
         return true;
     }
 
-    public int getIndexVonKnoten(Vertex vertex) {
+    private int getIndexVonKnoten(Vertex vertex) {
         // Sucht den Index eines Knotens im Array
         for (int i = 0; i < ANZAHL_KNOTEN; i++) {
             if (knoten[i] == vertex) {
@@ -389,38 +364,13 @@ public class Road extends Graph {
         // Gibt zurück, ob das Spiel gewonnen wurde
         return spielGewonnen;
     }
-    public double getX(Vertex v) {
-        int i = getIndexVonKnoten(v);
-        return xPos[i];
+
+    public int getAnzahlKnoten() {
+        return ANZAHL_KNOTEN;
     }
 
-    public double getY(Vertex v) {
-        int i = getIndexVonKnoten(v);
-        return yPos[i];
-    }
-    public Vertex getNodeAtPosition(double x, double y) {
-
-        for (int i = 0; i < ANZAHL_KNOTEN; i++) {
-
-            double dx = xPos[i] - x;
-            double dy = yPos[i] - y;
-
-            double dist = Math.sqrt(dx * dx + dy * dy);
-
-            if (dist < 20) {
-                return knoten[i];
-            }
-        }
-
-        return null;
-    }
-    public double getX(int index) {
-        return xPos[index];
-    }
-
-    public double getY(int index) {
-        return yPos[index];
+    public int getZielIndex() {
+        return getIndexVonKnoten(ziel);
     }
 
 }
-

@@ -1,7 +1,6 @@
 package my_project.model;
 
 import KAGO_framework.model.InteractiveGraphicalObject;
-import KAGO_framework.model.abitur.datenstrukturen.Vertex;
 import KAGO_framework.view.DrawTool;
 
 import java.awt.*;
@@ -19,6 +18,7 @@ public class Player extends InteractiveGraphicalObject {
     private double targetX;
     private double targetY;
     private boolean moving = false;
+    private boolean runSaved = false;
 
     public Player(double x, double y, double stamina, double maxHp, double luck) {
         this.x = x;
@@ -26,7 +26,7 @@ public class Player extends InteractiveGraphicalObject {
         this.stamina = stamina;
         this.luck = luck;
         this.maxHp = maxHp;
-        hp = 100;
+        hp = 1000;
     }
 
     @Override
@@ -95,12 +95,31 @@ public class Player extends InteractiveGraphicalObject {
 
             moving = false;
 
+            // Gewicht des Weges holen
+            int schaden = (int) road.getGewichtZumNachbarn(targetNodeIndex);
+
+            // HP basierend auf dem Gewicht verlieren
+            if (schaden > 0) {
+                hp -= schaden;
+            }
+
+            // HP darf nicht unter 0 fallen
+            if (hp < 0) {
+                hp = 0;
+            }
+
+            // Danach zum neuen Knoten gehen
             road.geheZuKnoten(targetNodeIndex);
 
+// Wenn der Zielknoten erreicht wurde, Remaining HP speichern
+            if (road.istSpielGewonnen() && !runSaved) {
+                Leaderboard.addRun(hp);
+                runSaved = true;
+            }
+
+// Spieler wieder in die Mitte setzen
             x = Toolkit.getDefaultToolkit().getScreenSize().width / 2.0;
             y = Toolkit.getDefaultToolkit().getScreenSize().height / 2.0;
-
-            return;
         }
 
         double speed = 200; // Pixel pro Sekunde

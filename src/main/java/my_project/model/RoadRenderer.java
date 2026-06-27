@@ -32,11 +32,10 @@ public class RoadRenderer extends GraphicalObject {
 
         double radius = 300;
 
-// Linien + speichern
+        // Linien + speichern
         drawTool.setCurrentColor(Color.GRAY);
 
         for (int i = 0; i < neighbors.length; i++) {
-
             double winkel = 2 * Math.PI * i / neighbors.length;
 
             double x = centerX + radius * Math.cos(winkel);
@@ -49,20 +48,35 @@ public class RoadRenderer extends GraphicalObject {
             drawTool.drawLine(centerX, centerY, x, y);
         }
 
-        drawTool.setCurrentColor(Color.WHITE);
-
+        // Nachbarknoten zeichnen
         for (int i = 0; i < neighbors.length; i++) {
+
+            if (neighborIndex[i] == road.getZielIndex()) {
+                drawTool.setCurrentColor(Color.GREEN); // Zielknoten
+            } else {
+                drawTool.setCurrentColor(Color.WHITE); // normaler Nachbarknoten
+            }
+
             drawTool.drawFilledCircle(neighborX[i], neighborY[i], 15);
         }
+
+        // Nummern an die Punkte schreiben
+        drawTool.setCurrentColor(Color.BLACK);
+
+        for (int i = 0; i < neighbors.length; i++) {
+            drawTool.drawText(
+                    neighborX[i] - 5,
+                    neighborY[i] - 5,
+                    String.valueOf(neighborIndex[i])
+            );
+        }
+
         // Spieler in der Mitte
         drawTool.setCurrentColor(Color.RED);
         drawTool.drawFilledCircle(player.getX(), player.getY(), 20);
     }
 
-    @Override
-    public void update(double dt) {
-        // optional später Animation / Layout
-    }
+
 
     public int getNeighborCount() {
         return neighborIndex.length;
@@ -79,5 +93,4 @@ public class RoadRenderer extends GraphicalObject {
     public int getNeighborIndex(int i) {
         return neighborIndex[i];
     }
-
 }
