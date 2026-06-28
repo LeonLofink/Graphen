@@ -66,7 +66,7 @@ public class RoadRenderer extends GraphicalObject {
         for (int i = 0; i < neighbors.length; i++) {
             drawTool.drawText(
                     neighborX[i] - 5,
-                    neighborY[i] - 5,
+                    neighborY[i] - 3,
                     String.valueOf(neighborIndex[i])
             );
         }
