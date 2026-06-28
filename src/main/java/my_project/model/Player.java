@@ -95,34 +95,28 @@ public class Player extends InteractiveGraphicalObject {
 
             moving = false;
 
-            // Gewicht des Weges holen
             int schaden = (int) road.getGewichtZumNachbarn(targetNodeIndex);
 
-            // HP basierend auf dem Gewicht verlieren
             if (schaden > 0) {
                 hp -= schaden;
             }
 
-            // HP darf nicht unter 0 fallen
             if (hp < 0) {
                 hp = 0;
             }
 
-            // Danach zum neuen Knoten gehen
             road.geheZuKnoten(targetNodeIndex);
 
-// Wenn der Zielknoten erreicht wurde, Remaining HP speichern
             if (road.istSpielGewonnen() && !runSaved) {
                 Leaderboard.addRun(hp);
                 runSaved = true;
             }
 
-// Spieler wieder in die Mitte setzen
             x = Toolkit.getDefaultToolkit().getScreenSize().width / 2.0;
             y = Toolkit.getDefaultToolkit().getScreenSize().height / 2.0;
         }
 
-        double speed = 200; // Pixel pro Sekunde
+        double speed = 200;
 
         x += dx / dist * speed * dt;
         y += dy / dist * speed * dt;

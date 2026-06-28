@@ -9,13 +9,10 @@ import java.awt.event.MouseEvent;
 
 public class ProgramController extends InteractiveGraphicalObject {
 
-    // Referenz auf den ViewController
     private final ViewController viewController;
 
-    // Array für 100 verschiedene Graphen
     private Road[] roads;
 
-    // Der aktuelle Graph, der gerade gespielt wird
     private Road currentRoad;
 
     private RoadRenderer roadRenderer;
@@ -48,10 +45,8 @@ public class ProgramController extends InteractiveGraphicalObject {
         viewController.draw(leaderboard);
         viewController.register(leaderboard);
 
-        // Speicherplatz für 100 Road-Objekte
         roads = new Road[100];
 
-        // 100 verschiedene zufällige Graphen erstellen
         for (int i = 0; i < roads.length; i++) {
             roads[i] = new Road();
         }
@@ -63,11 +58,9 @@ public class ProgramController extends InteractiveGraphicalObject {
 
     public void updateProgram(double dt) {
 
-        // Wenn die Szene gewechselt wurde
         if (scene.getScene() != currentScene) {
             currentScene = scene.getScene();
 
-            // STARTSCREEN / MENÜ
             if (currentScene == 1) {
                 background.setBackground(1);
 
@@ -86,7 +79,6 @@ public class ProgramController extends InteractiveGraphicalObject {
                 currentRoad = null;
             }
 
-            // SPIEL
             if (currentScene == 2) {
 
                 viewController.removeDrawable(startScreen);
@@ -118,7 +110,6 @@ public class ProgramController extends InteractiveGraphicalObject {
                 player.setRoad(currentRoad);
             }
 
-            // LEADERBOARD
             if (currentScene == 3) {
 
                 viewController.removeDrawable(startScreen);
@@ -138,7 +129,6 @@ public class ProgramController extends InteractiveGraphicalObject {
             }
         }
 
-        // Wenn man im Spiel gewinnt: zurück ins Menü
         if (scene.getScene() == 2 && currentRoad != null && currentRoad.istSpielGewonnen()) {
             scene.setScene(1);
             currentRoad = null;
@@ -148,7 +138,6 @@ public class ProgramController extends InteractiveGraphicalObject {
     @Override
     public void mouseClicked(MouseEvent e) {
 
-        // Nur im Spiel darf man Knoten anklicken
         if (scene.getScene() != 2 || roadRenderer == null || player == null) {
             return;
         }

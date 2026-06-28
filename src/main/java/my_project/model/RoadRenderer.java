@@ -32,7 +32,6 @@ public class RoadRenderer extends GraphicalObject {
 
         double radius = 300;
 
-        // Linien + speichern
         drawTool.setCurrentColor(Color.GRAY);
 
         for (int i = 0; i < neighbors.length; i++) {
@@ -48,19 +47,17 @@ public class RoadRenderer extends GraphicalObject {
             drawTool.drawLine(centerX, centerY, x, y);
         }
 
-        // Nachbarknoten zeichnen
         for (int i = 0; i < neighbors.length; i++) {
 
             if (neighborIndex[i] == road.getZielIndex()) {
-                drawTool.setCurrentColor(Color.GREEN); // Zielknoten
+                drawTool.setCurrentColor(Color.GREEN);
             } else {
-                drawTool.setCurrentColor(Color.WHITE); // normaler Nachbarknoten
+                drawTool.setCurrentColor(Color.WHITE);
             }
 
             drawTool.drawFilledCircle(neighborX[i], neighborY[i], 15);
         }
 
-        // Nummern an die Punkte schreiben
         drawTool.setCurrentColor(Color.BLACK);
 
         for (int i = 0; i < neighbors.length; i++) {
@@ -71,7 +68,6 @@ public class RoadRenderer extends GraphicalObject {
             );
         }
 
-        // Spieler in der Mitte
         drawTool.setCurrentColor(Color.RED);
         drawTool.drawFilledCircle(player.getX(), player.getY(), 20);
     }

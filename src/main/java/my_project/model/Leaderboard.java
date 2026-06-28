@@ -13,7 +13,6 @@ public class Leaderboard extends InteractiveGraphicalObject {
     private static Node root;
     private static int runCount = 0;
 
-    // Knoten für den Binary Search Tree
     private static class Node {
         int hp;
         int runNumber;
@@ -31,25 +30,21 @@ public class Leaderboard extends InteractiveGraphicalObject {
         this.scene = scene;
     }
 
-    // Wird vom Player aufgerufen, wenn ein Run gewonnen wurde
     public static void addRun(int hp) {
         runCount++;
         root = insert(root, hp, runCount);
     }
 
-    // Einfügen in den Binary Search Tree
     private static Node insert(Node current, int hp, int runNumber) {
 
         if (current == null) {
             return new Node(hp, runNumber);
         }
 
-        // Kleinere HP nach links
         if (hp < current.hp) {
             current.left = insert(current.left, hp, runNumber);
         }
 
-        // Größere oder gleiche HP nach rechts
         else {
             current.right = insert(current.right, hp, runNumber);
         }
@@ -60,7 +55,6 @@ public class Leaderboard extends InteractiveGraphicalObject {
     @Override
     public void draw(DrawTool drawTool) {
 
-        // Leaderboard nur anzeigen, wenn Szene 3 aktiv ist
         if (scene.getScene() != 3) {
             return;
         }
@@ -92,12 +86,9 @@ public class Leaderboard extends InteractiveGraphicalObject {
             int[] y = {330};
             int[] place = {1};
 
-            // Reverse Inorder: rechts, mitte, links
-            // Dadurch stehen die höchsten HP oben
             drawTreeDescending(drawTool, root, y, place);
         }
 
-        // Zurück-Button
         drawTool.setCurrentColor(Color.WHITE);
         drawTool.drawRectangle(60, 60, 250, 70);
 
@@ -111,7 +102,6 @@ public class Leaderboard extends InteractiveGraphicalObject {
             return;
         }
 
-        // Erst rechter Teilbaum: größere HP
         drawTreeDescending(drawTool, current.right, y, place);
 
         drawTool.drawText(740, y[0], place[0] + ".");
@@ -121,14 +111,12 @@ public class Leaderboard extends InteractiveGraphicalObject {
         y[0] += 45;
         place[0]++;
 
-        // Dann linker Teilbaum: kleinere HP
         drawTreeDescending(drawTool, current.left, y, place);
     }
 
     @Override
     public void mousePressed(MouseEvent e) {
 
-        // Nur im Leaderboard anklickbar
         if (scene.getScene() != 3) {
             return;
         }
@@ -136,7 +124,6 @@ public class Leaderboard extends InteractiveGraphicalObject {
         int mx = e.getX();
         int my = e.getY();
 
-        // Zurück-Button
         if (mx >= 60 && mx <= 310 &&
                 my >= 60 && my <= 130) {
 
