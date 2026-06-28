@@ -96,7 +96,7 @@ public class ProgramController extends InteractiveGraphicalObject {
                         Toolkit.getDefaultToolkit().getScreenSize().width / 2.0,
                         Toolkit.getDefaultToolkit().getScreenSize().height / 2.0,
                         100,
-                        100,
+                        200,
                         100
                 );
 

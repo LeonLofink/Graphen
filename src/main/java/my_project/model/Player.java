@@ -26,7 +26,7 @@ public class Player extends InteractiveGraphicalObject {
         this.stamina = stamina;
         this.luck = luck;
         this.maxHp = maxHp;
-        hp = 1000;
+        hp = 200;
     }
 
     @Override
@@ -41,7 +41,7 @@ public class Player extends InteractiveGraphicalObject {
         drawTool.drawFilledRectangle(50, 30, (double) hp / maxHp * barWidth, barHeight);
         drawTool.setCurrentColor(Color.WHITE);
         drawTool.drawRectangle(50, 30, barWidth, barHeight);
-        drawTool.drawText(20 + barWidth/2 , 30 + 18, hp + " / " + maxHp);
+        drawTool.drawText(20 + barWidth/2 , 30 + 18, (int) hp + " / " + (int) maxHp);
         drawTool.setCurrentColor(new Color(0, 111, 255));
         drawTool.drawFilledCircle(x, y, 30);
         drawTool.setCurrentColor(Color.WHITE);
